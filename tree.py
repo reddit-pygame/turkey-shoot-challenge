@@ -16,32 +16,26 @@ class Tree(pg.sprite.DirtySprite):
         x, y = self.rect.topleft
         if self.trunk == "curvy":
             self.collider = pg.Rect(x + 65, y + 102, 16, 11)
-            self.foliage_bottom = 66
             self.leaf_fall_distance = 60
         else:
             self.collider = pg.Rect(x + 39, y + 102, 14, 10)
-            self.foliage_bottom = 72
-            self.leaf_fall_distance = 60
+            self.leaf_fall_distance = 64
 
 
 class Leaf(pg.sprite.DirtySprite):
     offsets  = {"curvy": ((18, 109), (31, 63)),
-                             "straight": ((17, 85), (26, 74))}
+                     "straight": ((17, 85), (26, 74))}
     images = {}
-    for i in range(1, 6, 2):
+    for i in range(1, 7):
         sheet = prepare.GFX["leaf-strip{}".format(i)]
-        leaves = tools.strip_from_sheet(sheet, (0, 0), (16, 16), 12)
+        leaves = tools.strip_from_sheet(sheet, (0, 0), (16, 16), 24)
         images[i] = leaves
-        images[i + 1] = leaves
 
     def __init__(self, tree, spot_info, *groups):
         super(Leaf, self).__init__(*groups)
         treex, treey = tree.rect.topleft
-        #x += randint(*self.offsets[tree.trunk][0])
-        #y += randint(*self.offsets[tree.trunk][1])
         x = treex + spot_info[0][0]
         y = treey + spot_info[0][1]
-
         self.image = choice(self.images[tree.num]).copy()
         self.rect = self.image.get_rect(center=(x, y))
         self.collider = self.rect.copy()
