@@ -1,0 +1,128 @@
+
+
+LICENSES
+
+CC-BY 3.0 http://creativecommons.org/licenses/by/3.0/legalcode
+CC-BY-SA 3.0 http://creativecommons.org/licenses/by-sa/3.0/legalcode
+CC-BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
+CC0
+OGA-BY-3.0   http://static.opengameart.org/OGA-BY-3.0.txt
+
+FONTS
+
+Font name: Nixie One
+File name: NixieOne.ttf
+Source: http://www.dafont.com/nixie-one.font?l[]=10&text=Turkey+Shoot
+Author: Ivan Gladkikh http://www.dafont.com/profile.php?user=194118&l[]=10
+License: Public Domain
+
+
+SOUNDS
+
+File name: gobble1.ogg
+Source: https://www.freesound.org/people/JarredGibb/sounds/233123/
+Author: Jarred Gibb https://www.freesound.org/people/JarredGibb/
+License: CC0
+
+File name: gobble2.ogg
+Source: https://www.freesound.org/people/JarredGibb/sounds/233124/
+Author: Jarred Gibb https://www.freesound.org/people/JarredGibb/
+License: CC0
+
+File name: gobble3.ogg
+Source: https://www.freesound.org/people/JarredGibb/sounds/233125/
+Author: Jarred Gibb https://www.freesound.org/people/JarredGibb/
+License: CC0
+
+File name: gobble4.ogg
+Source: https://www.freesound.org/people/JarredGibb/sounds/233126/
+Author: Jarred Gibb https://www.freesound.org/people/JarredGibb/
+License: CC0
+
+File name: gobble5.ogg
+Source: https://www.freesound.org/people/JarredGibb/sounds/233120/
+Author: Jarred Gibb https://www.freesound.org/people/JarredGibb/
+License: CC0
+
+File name: gobble6.ogg
+Source: https://www.freesound.org/people/JarredGibb/sounds/233121/
+Author: Jarred Gibb https://www.freesound.org/people/JarredGibb/
+License: CC0
+
+Footstep sounds
+Source: http://opengameart.org/content/grass-foot-step-sounds-yo-frankie
+Author: Blender Foundation https://apricot.blender.org/
+License: CC-BY 3.0
+
+Leaf sounds
+Source: http://opengameart.org/content/20-rustles-dry-leaves
+Author: http://opengameart.org/users/qubodup
+License: CC0
+
+Gun sounds
+Source: http://opengameart.org/content/shotgun-shoot-reload
+Author: Mike Koenig (Soundbible) http://soundbible.com/tags-game.html
+License: CC-BY 3.0
+
+Background sound
+Source: https://www.freesound.org/people/ecfike/sounds/160893/
+Author:
+License: CC0
+
+Wind Gust
+Source: https://www.freesound.org/people/Spleencast/sounds/87289/
+Author: spleencast https://spleencast.wordpress.com/
+License: CC-BY-NC 3.0
+
+Knife Sharpener
+Source: http://opengameart.org/content/knife-sharpening-slice-1
+Author: Berklee College of Music https://archive.org/details/Berklee44v13
+License: CC-BY 3.0
+
+Ducks
+Source: https://www.freesound.org/people/squashy555/sounds/244329/
+Author: Ade Swash https://www.freesound.org/people/squashy555/
+License: CC0
+
+
+IMAGES
+
+Turkey images were created from "LPC Turkey" by bluecarrot16. License: CC-BY 3.0
+
+File name: turkeysheet.png
+Source: http://opengameart.org/content/lpc-turkey
+Author: bluecarrot16 http://opengameart.org/users/bluecarrot16
+License: CC-BY 3.0
+
+Filename: roast.png
+Source: http://opengameart.org/content/shadowless-lpc-food
+Author: Original images (http://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements) by Daniel Eddeland http://opengameart.org/users/daneeklu
+             Shadowless versions by caeles http://opengameart.org/users/caeles
+License: CC-BY-SA 3.0
+
+Player images
+Source: http://opengameart.org/content/animated-top-down-survivor-player by Riley Gombart (opengameart.org/users/rileygombart)
+License: CC-BY-SA 3.0
+
+Tree images
+Source: http://opengameart.org/content/lpc-tree-recolors Original trees by C. Nilsson, recolored by http://opengameart.org/users/williamthompsonj
+License: CC-BY 3.0
+
+Leaf images
+Source: http://opengameart.org/content/lpc-leaf-recolor Original leaves by Johann CHARLOT - http://poufpoufproduction.fr , recolored by  http://opengameart.org/users/williamthompsonj
+License: CC-BY-SA 3.0
+
+Grass Tiles
+Source: http://opengameart.org/content/autumn-tileset-for-rpgs
+Author: knunery http://opengameart.org/users/knunery
+License: CC-BY 3.0
+
+Tall Grass (recolored to match ground tiles)
+Source: http://opengameart.org/content/grass-2-0
+Author: virtushda http://opengameart.org/users/virtushda
+License: CC0
+
+Ducks
+Source: http://opengameart.org/content/ducks
+Author: clayster http://opengameart.org/users/clayster2012
+License: OGA-BY-3.0
