@@ -7,7 +7,7 @@ from hunter import Hunter
 from turkey import Turkey, Roast
 from tree import Tree, Leaf
 from leaf_spots import leaf_spots
-from helpers import AmmoCrate, NoiseDetector, MiniMap, Icon, Duck, Flock
+from helpers import AmmoCrate, NoiseDetector, Icon, Duck, Flock
 from labels import Label
 
 
@@ -60,8 +60,8 @@ class Hunting(GameState):
                                              {"topleft": (50, 50)}, **style)
         Icon((20, 3), "shell", self.ui)
         Icon((10, 45), "roast", self.ui)
-        self.add_flock()        
-        
+        self.add_flock()
+
     def wind_gust(self):
         """Play wind sound and set up next gust."""
         prepare.SFX["wind"].play()
@@ -76,7 +76,7 @@ class Hunting(GameState):
             pos = randint(20, w - 20), randint(20, h - 20)
             Turkey(pos, turkeys, self.all_sprites)
         return turkeys
-          
+
     def make_trees(self):
         """Spawn trees."""
         self.trees = pg.sprite.Group()
@@ -86,7 +86,7 @@ class Hunting(GameState):
                 pos = (randint(50, w - 20), randint(20, h - 20))
                 tree = Tree(pos)
                 collisions = (tree.collider.colliderect(other.collider)
-                                   for other in self.colliders) 
+                                   for other in self.colliders)
                 if not any(collisions) and not tree.collider.colliderect(self.hunter.collider):
                     break
             self.trees.add(tree)
@@ -110,7 +110,7 @@ class Hunting(GameState):
         self.bullets.update(dt)
         for sprite in self.all_sprites:
             self.all_sprites.change_layer(sprite, sprite.collider.bottom)
-        
+
         tree_hits = pg.sprite.groupcollide(self.bullets, self.trees, True,
                                                           False, footprint_collide)
         for bullet in tree_hits:
@@ -119,13 +119,13 @@ class Hunting(GameState):
                 num = randint(3, 9)
                 for spot_info in sample(leaf_spots[tree.trunk], num):
                     self.add_leaf(tree, spot_info)
-        
+
         turkey_hits = pg.sprite.groupcollide(self.bullets, self.turkeys,
                                                               True, True, footprint_collide)
         for t_bullet in turkey_hits:
             for turkey in turkey_hits[t_bullet]:
                 Roast(turkey.pos, self.roasts, self.all_sprites)
-        
+
         if self.hunter.shells < self.hunter.max_shells:
             if self.hunter.collider.colliderect(self.ammo_crate.rect.inflate(16, 16)):
                 prepare.SFX["gunload"].play()
@@ -140,10 +140,9 @@ class Hunting(GameState):
                                                                    True, footprint_collide)
         if roast_collisions:
             prepare.SFX["knifesharpener"].play()
-            self.hunter.roasts += len(roast_collisions)            
-        self.mini_map.update(self.world_surf, self.hunter, self.turkeys)
+            self.hunter.roasts += len(roast_collisions)
         self.flocks.update(self.hunter)
-        
+
     def scare_turkeys(self):
         """Make turkeys flee depending on distance and the player's noise level."""
         size = self.noise_detector.noise_level
@@ -184,10 +183,10 @@ class Hunting(GameState):
     def draw(self, surface):
         self.all_sprites.draw(self.world_surf)
         rect = self.get_view_rect()
-        surf = self.world_surf.subsurface(rect)        
+        surf = self.world_surf.subsurface(rect)
         surface.blit(surf, (0, 0))
         self.shell_label.draw(surface)
         self.roasts_label.draw(surface)
         self.ui.draw(surface)
 
-        
+

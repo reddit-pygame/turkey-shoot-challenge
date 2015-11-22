@@ -62,7 +62,7 @@ class Hunter(pg.sprite.DirtySprite):
         next(self.walk_sounds).play()
         self.noise_detector.add_noise(80 * self.hustle)
         self.start_walking()
-        
+
     def start_walking(self):
         """Add a footstep sound with delay depending on player's movement."""
         task = Task(self.play_walk_sound, 400 // self.hustle)
@@ -71,7 +71,7 @@ class Hunter(pg.sprite.DirtySprite):
     def stop_walking(self):
         """Stop playing footstep sounds."""
         self.footstep_animations.empty()
-        
+
     def flip_state(self, new_state):
         """
         Set self.state to new_state and switch to the appropriate
@@ -99,12 +99,12 @@ class Hunter(pg.sprite.DirtySprite):
             self.rect = self.image.get_rect(center=self.pos)
 
         for action in self.actions:
-            
+
             if any((keys[key] for key in self.controls[action])):
                 self.actions[action](dt, colliders)
                 if action == "move":
                     self.actions[action](dt, colliders)
-                    
+
                 else:
                     self.actions[action](dt)
         if keys[pg.K_SPACE]:
@@ -166,11 +166,11 @@ class Hunter(pg.sprite.DirtySprite):
                 for scared in scared_turkeys:
                     task = Task(scared.flee, 750, args=(self,))
                     self.animations.add(task)
-            task = Task(self.flip_state, 120, args=("idle",))                  
+            task = Task(self.flip_state, 120, args=("idle",))
             animations.add(task)
             self.cooldown_timer = 0
             self.flip_state("shoot")
-            
+
     def draw(self, surface):
         surface.blit(self.image, self.rect)
         pg.draw.rect(surface, pg.Color("red"), self.rect, 2)

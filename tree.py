@@ -51,5 +51,5 @@ class Leaf(pg.sprite.DirtySprite):
 
     def set_alpha(self):
         self.image.set_alpha(self.img_alpha)
-        
+
 

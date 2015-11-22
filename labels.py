@@ -9,7 +9,7 @@ LABEL_DEFAULTS = {
         "font_size": 24,
         "text_color": "white",
         "fill_color": None,
-        "alpha": 255}            
+        "alpha": 255}
 
 
 def _parse_color(color):
@@ -29,8 +29,8 @@ class LabelGroup(pg.sprite.Group):
     """Container class for Label objects."""
     def __init__(self):
         super(LabelGroup, self).__init__()
-    
-        
+
+
 class Label(pg.sprite.Sprite, tools._KwargMixin):
     """
     Parent class all labels inherit from. Color arguments can use color names

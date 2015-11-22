@@ -3,6 +3,11 @@
 A seasonally-themed challenge for autumn, this one focuses on implementing a mini-map to help the player navigate the game world. The provided code is a
  topdown shooter where you hunt turkeys.
 
+Github repo: https://github.com/reddit-pygame/turkey-shoot-challenge
+
+Challenge thread: 
+
+
 ##How It Works
 
 *Turkeys*
