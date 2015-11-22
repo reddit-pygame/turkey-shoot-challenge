@@ -5,8 +5,6 @@ A seasonally-themed challenge for autumn, this one focuses on implementing a min
 
 Github repo: https://github.com/reddit-pygame/turkey-shoot-challenge
 
-Challenge thread: 
-
 
 ##How It Works
 
