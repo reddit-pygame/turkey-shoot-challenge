@@ -122,40 +122,4 @@ class Flock(pg.sprite.Sprite):
             prepare.SFX["ducks"].play()
             self.honked = True
         
-
-class MiniMap(pg.sprite.Sprite):
-    def __init__(self, topleft, size, *groups):
-        super(MiniMap, self).__init__(*groups)
-        self.frame_width = 4
-        self.matting_width = 8
-        padding = self.frame_width + self.matting_width
-        self.map_rect = pg.Rect((padding, padding), size)
-        self.frame_rect = self.map_rect.inflate(padding * 2, padding * 2)
-        self.frame_color = parse_color((58, 41, 18))
-        self.matting_rect = self.map_rect.inflate(self.matting_width * 2, self.matting_width * 2)
-        self.fill_color = parse_color((43, 35, 15))
-        self.surf = pg.Surface(self.frame_rect.size).convert()
-        self.rect = self.surf.get_rect(topleft=topleft)
-    
-    def update(self, world_map, hunter, turkeys):
-        mapw, maph = world_map.get_size()
-        shrunk = pg.transform.scale(world_map, self.map_rect.size)
-        miniw, minih = shrunk.get_size()
-        xscale = miniw / mapw
-        yscale = minih / maph
-        x = hunter.collider.centerx * xscale
-        y = hunter.collider.centery * yscale
-        player = pg.Rect(0, 0, 3, 3)
-        player.center = (x, y)
-        pg.draw.rect(shrunk, pg.Color("dodgerblue"), player)
-        
-        
-        padding = self.frame_width + self.matting_width
-        map_rect = self.map_rect.move(padding, padding)
-        self.surf.fill(self.frame_color)
-        pg.draw.rect(self.surf, self.fill_color, self.matting_rect)
-        self.surf.blit(shrunk, (padding, padding))
-        self.image = self.surf
-        self.image.set_alpha(220)
-        
         

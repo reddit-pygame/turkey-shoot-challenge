@@ -60,7 +60,6 @@ class Hunting(GameState):
                                              {"topleft": (50, 50)}, **style)
         Icon((20, 3), "shell", self.ui)
         Icon((10, 45), "roast", self.ui)
-        self.mini_map = MiniMap((1064, 0), (192, 192), self.ui)
         self.add_flock()        
         
     def wind_gust(self):

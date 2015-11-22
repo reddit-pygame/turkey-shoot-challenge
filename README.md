@@ -1,16 +1,16 @@
 #Turkey Shoot Challenge
 
-A seasonally-themed challenge for autumn, this one focuses on implementing a mini-map to help the player navigate the game world.
+A seasonally-themed challenge for autumn, this one focuses on implementing a mini-map to help the player navigate the game world. The provided code is a
+ topdown shooter where you hunt turkeys.
 
 ##How It Works
-
 
 *Turkeys*
 
 Turkeys use a simple state engine to determine their behavior. The duration of each state (Walking, Idle, Fleeing) is randomly determined when it is instantiated. When the 
 current state finishes a new state is randomly chosen and instantiated (the Fleeing state is never chosen randomly).
 
-Turkeys are a nervous lot and will flee from the player (see Stealth section below). 
+Turkeys are a nervous lot and will flee from the player (see Stealth section below).
 
 *Stealth* 
 
@@ -62,3 +62,5 @@ ESC: Exit
 **Ghost Roast** Roasts dropped when turkeys are killed should fade away over time then disappear.
 
 **Projection Perfection** Implement a better system for bullet collisions that doesn't allow bullets to pass "through" trees or turkeys.
+
+#[Happy Thanksgiving - Gobble, Gobble!](https://www.youtube.com/watch?v=MKiwwO9KBpA&feature=youtu.be&t=1640)
