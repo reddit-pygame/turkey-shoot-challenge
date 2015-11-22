@@ -7,6 +7,7 @@ from leaf_spots import leaf_spots
 
 
 class Tree(pg.sprite.DirtySprite):
+    """Trees block movement of turkeys and the player."""
     def __init__(self, midbottom, *groups):
         super(Tree, self).__init__(*groups)
         self.num = choice((1, 1, 2, 3, 4, 5, 5, 6, 6))
@@ -23,6 +24,7 @@ class Tree(pg.sprite.DirtySprite):
 
 
 class Leaf(pg.sprite.DirtySprite):
+    """Some eye candy for when the player shoots a tree."""
     offsets  = {"curvy": ((18, 109), (31, 63)),
                      "straight": ((17, 85), (26, 74))}
     images = {}

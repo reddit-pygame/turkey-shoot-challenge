@@ -11,7 +11,7 @@ from animation import Animation, Task
 SIZE = (96, 96)
 
 class Hunter(pg.sprite.DirtySprite):
-    
+    """The player's character."""
     moves = [pg.transform.smoothscale(GFX["move_{}".format(x)], SIZE) for x in range(20)]
     shoots = [pg.transform.smoothscale(GFX["shoot_{}".format(x)], SIZE) for x in range(3)]
     idles = [pg.transform.smoothscale(GFX["idle_{}".format(x)], SIZE) for x in range(19)]
@@ -55,18 +55,28 @@ class Hunter(pg.sprite.DirtySprite):
         self.noise_detector = noise_detector
 
     def play_walk_sound(self):
+        """
+        Play a footstep sound, increase the player's noise level and
+        set up the next footstep.
+        """
         next(self.walk_sounds).play()
         self.noise_detector.add_noise(80 * self.hustle)
         self.start_walking()
         
     def start_walking(self):
+        """Add a footstep sound with delay depending on player's movement."""
         task = Task(self.play_walk_sound, 400 // self.hustle)
         self.footstep_animations.add(task)
 
     def stop_walking(self):
-       self.footstep_animations.empty()
+        """Stop playing footstep sounds."""
+        self.footstep_animations.empty()
         
     def flip_state(self, new_state):
+        """
+        Set self.state to new_state and switch to the appropriate
+        animation cycle.
+        """
         self.state = new_state
         self.images = self.base_images[self.state]
         self.current_image = next(self.images)
@@ -132,6 +142,10 @@ class Hunter(pg.sprite.DirtySprite):
             self.collider.center = self.pos
 
     def shoot(self, bullets, turkeys, all_sprites, animations):
+        """
+        Fire a bullet if the player has enough ammo and enough time has passed
+        since the last shot.
+        """
         if self.cooldown_timer >= self.cooldown_time:
             self.stop_walking()
             if self.shells <= 0:

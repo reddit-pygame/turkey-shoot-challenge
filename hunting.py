@@ -16,16 +16,17 @@ def footprint_collide(left, right):
 
 
 def make_background(size, tile_size=64):
-        grass = prepare.GFX["grass"]
-        w, h  = size
-        surf = pg.Surface(size).convert()
-        for y in range(0, h + 1, tile_size):
-            for x in range(0, w + 1, tile_size):
-                surf.blit(grass, (x, y))
-        return surf
+    grass = prepare.GFX["grass"]
+    w, h  = size
+    surf = pg.Surface(size).convert()
+    for y in range(0, h + 1, tile_size):
+        for x in range(0, w + 1, tile_size):
+            surf.blit(grass, (x, y))
+    return surf
 
 
 class Hunting(GameState):
+    """The main game state."""
     def __init__(self):
         super(Hunting, self).__init__()
         self.world_surf = pg.Surface(prepare.WORLD_SIZE).convert()
@@ -59,8 +60,8 @@ class Hunting(GameState):
                                              {"topleft": (50, 50)}, **style)
         Icon((20, 3), "shell", self.ui)
         Icon((10, 45), "roast", self.ui)
-        self.mini_map = MiniMap((1000, 0), (256, 144), self.ui)
-        self.add_flock((self.hunter.collider.centerx, -1500))        
+        self.mini_map = MiniMap((1064, 0), (192, 192), self.ui)
+        self.add_flock()        
         
     def wind_gust(self):
         """Play wind sound and set up next gust."""
@@ -78,24 +79,28 @@ class Hunting(GameState):
         return turkeys
           
     def make_trees(self):
+        """Spawn trees."""
         self.trees = pg.sprite.Group()
         w, h  = prepare.WORLD_SIZE
         for _ in range(120):
             while True:
                 pos = (randint(50, w - 20), randint(20, h - 20))
                 tree = Tree(pos)
-                collisions = (tree.collider.colliderect(other.collider) for other in self.colliders)
+                collisions = (tree.collider.colliderect(other.collider)
+                                   for other in self.colliders) 
                 if not any(collisions) and not tree.collider.colliderect(self.hunter.collider):
                     break
             self.trees.add(tree)
             self.colliders.add(tree)
             self.all_sprites.add(tree)
 
-    def add_flock(self, leader_centerpoint):
-        flock = Flock(leader_centerpoint, self.animations, self.all_sprites, self.flocks)
-
-    def get_event(self, event):
-        pass
+    def add_flock(self):
+        """Add a Flock of birds."""
+        flock = Flock((self.hunter.collider.centerx, -1500), self.animations,
+                             self.all_sprites, self.flocks)
+        next_flock = randint(45000, 150000) #next flock in 45-150 seconds
+        task = Task(self.add_flock, next_flock)
+        self.animations.add(task)
 
     def update(self, dt):
         self.animations.update(dt)
@@ -132,7 +137,8 @@ class Hunting(GameState):
         self.noise_detector.update(dt)
         self.shell_label.set_text("{}".format(self.hunter.shells))
         self.roasts_label.set_text("{}".format(self.hunter.roasts))
-        roast_collisions = pg.sprite.spritecollide(self.hunter, self.roasts, True, footprint_collide)
+        roast_collisions = pg.sprite.spritecollide(self.hunter, self.roasts,
+                                                                   True, footprint_collide)
         if roast_collisions:
             prepare.SFX["knifesharpener"].play()
             self.hunter.roasts += len(roast_collisions)            
@@ -140,6 +146,7 @@ class Hunting(GameState):
         self.flocks.update(self.hunter)
         
     def scare_turkeys(self):
+        """Make turkeys flee depending on distance and the player's noise level."""
         size = self.noise_detector.noise_level
         scare_rect = self.hunter.collider.inflate(size, size)
         scared_turkeys = (t for t in self.turkeys
@@ -148,6 +155,7 @@ class Hunting(GameState):
             scared.flee(self.hunter)
 
     def add_leaf(self, tree, spot_info):
+        """Add a falling leaf."""
         fall_time = randint(2000, 2500)
         leaf = Leaf(tree, spot_info, self.leaves, self.all_sprites)
         y = leaf.rect.centery + leaf.fall_distance
@@ -165,6 +173,10 @@ class Hunting(GameState):
         self.animations.add(ani, ani2, fade)
 
     def get_view_rect(self):
+        """
+        Return the currently visible portion of the world map
+        centered on the player.
+        """
         view_rect = pg.Rect((0, 0), prepare.SCREEN_SIZE)
         view_rect.center = self.hunter.pos
         view_rect.clamp_ip(self.world_rect)
@@ -173,18 +185,10 @@ class Hunting(GameState):
     def draw(self, surface):
         self.all_sprites.draw(self.world_surf)
         rect = self.get_view_rect()
-        surf = self.world_surf.subsurface(rect)
+        surf = self.world_surf.subsurface(rect)        
         surface.blit(surf, (0, 0))
         self.shell_label.draw(surface)
         self.roasts_label.draw(surface)
         self.ui.draw(surface)
-        #self.all_sprites.draw(surface)
-        #for tree in self.trees:
-        #    pg.draw.rect(surface, pg.Color("red"), tree.collider, 2)
-        #for turkey in self.turkeys:
-        #    pg.draw.rect(surface, pg.Color("blue"), turkey.collider, 2)
-        #for sprite in self.all_sprites:
-        #    if isinstance(sprite, Leaf):
-        #        pg.draw.rect(surface, pg.Color("purple"), sprite.collider, 1)
-       #pg.draw.rect(surface, pg.Color("green"), self.hunter.collider, 2)
 
+        

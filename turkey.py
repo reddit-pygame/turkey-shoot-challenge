@@ -9,13 +9,8 @@ from animation import Animation, Task
 strip = tools.strip_from_sheet
 
 
-
-
-
-
-
-
 class TurkeyState(object):
+    """Base class for turkey states to inherit from."""
     directions = ["left", "right", "up", "down"]
     opposites = {"left": "right",
                          "right": "left",
@@ -30,6 +25,10 @@ class TurkeyState(object):
         pass
 
     def move_turkey(self, dt, trees):
+        """
+        Check for collisions with trees and move turkey if new position
+        is unblocked, otherwise reverse direction.
+        """
         t = self.turkey
         x, y  = t.pos
         x += self.speed * dt * t.velocities[t.direction][0]
@@ -56,6 +55,7 @@ class TurkeyState(object):
 
 
 class Walking(TurkeyState):
+    """Turkey is walking around the map."""
     def __init__(self, turkey):
         super(Walking, self).__init__(turkey)
         self.name = "walk"
@@ -76,6 +76,7 @@ class Walking(TurkeyState):
 
 
 class Idle(TurkeyState):
+    """Turkey is standing still."""
     def __init__(self, turkey):
         super(Idle, self).__init__(turkey)
         self.name = "idle"
@@ -93,7 +94,7 @@ class Idle(TurkeyState):
 
 
 class Fleeing(TurkeyState):
-
+    """Turkey is running away from the player."""
     def __init__(self, turkey):
         super(Fleeing, self).__init__(turkey)
         self.name = "flee"
@@ -115,6 +116,8 @@ class Fleeing(TurkeyState):
 
 
 class Turkey(pg.sprite.DirtySprite):
+    """
+    Create a turkey at a certain map position."""
     sheet = prepare.GFX["turkey-sheet"]
     base_images = {}
     for state_name in ("walk", "idle"):
@@ -145,6 +148,7 @@ class Turkey(pg.sprite.DirtySprite):
         self.gobble_time = randint(*self.gobble_time_range)
 
     def change_direction(self, state_name, direction):
+        """Change direction and switch to the appropriate animation cycle."""
         self.direction = direction
         self.images = it.cycle(self.base_images[state_name][self.direction])
         self.image= next(self.images)
@@ -153,9 +157,11 @@ class Turkey(pg.sprite.DirtySprite):
                                          self.rect.centery + self.collider_offsets[self.direction][1])
 
     def gobble(self):
+        """Play a goblle sound."""
         choice(self.sounds).play()
 
     def flee(self, hunter):
+        """Change direction to flee from the player."""
         h = hunter.collider
         t = self.collider
         xdiff = t.centerx - h.centerx
@@ -178,6 +184,7 @@ class Turkey(pg.sprite.DirtySprite):
 
 
 class Roast(pg.sprite.DirtySprite):
+    """Created when a Turkey is killed by the player."""
     def __init__(self, pos, *groups):
         super(Roast, self).__init__(*groups)
         self.image = prepare.GFX["roast"]
