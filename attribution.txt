@@ -5,8 +5,13 @@ LICENSES
 CC-BY 3.0 http://creativecommons.org/licenses/by/3.0/legalcode
 CC-BY-SA 3.0 http://creativecommons.org/licenses/by-sa/3.0/legalcode
 CC-BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
-CC0
+CC0          http://creativecommons.org/publicdomain/zero/1.0/legalcode
 OGA-BY-3.0   http://static.opengameart.org/OGA-BY-3.0.txt
+
+CODE
+
+All code is licensed as CC0 - do what you like.
+
 
 FONTS
 
